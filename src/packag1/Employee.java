@@ -9,6 +9,10 @@ public class Employee {
 
     public static int employeeCount;
 
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
     private Employee(String name, int salary, double bonus, String address) {
         this.name = name;
         this.salary = salary;
