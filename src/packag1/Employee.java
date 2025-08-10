@@ -22,7 +22,6 @@ public class Employee {
     }
 
     public Employee() {
-
     }
 
     public static Employee createEmployee(String name, String salary, double bonus, String address) {
