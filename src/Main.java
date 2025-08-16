@@ -4,11 +4,13 @@ import packag2.ChildEmployee;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        /*System.out.println("Hello, World!");
 
 
         Map<String, String> map = new ConcurrentHashMap<>();
@@ -97,7 +99,7 @@ public class Main {
 
         System.out.println(st.contains(130));*/
 
-        TreeSet<Integer> treeSet = new TreeSet<>();
+       /* TreeSet<Integer> treeSet = new TreeSet<>();
         treeSet.add(10);
         treeSet.add(2);
         treeSet.add(3);
@@ -108,7 +110,7 @@ public class Main {
         Iterator<Integer> it2 = treeSet.iterator();
         while (it2.hasNext()) {
             System.out.println(it2.next());
-        }
+        }*/
 
 
 
@@ -162,7 +164,7 @@ public class Main {
             throw err;
         }*/
 
-        CalculatorInterface calculatorInterface = new CalculatorInterface() {
+        /*CalculatorInterface calculatorInterface = new CalculatorInterface() {
             @Override
             public int add(int a, int b) {
                 return a+b;
@@ -195,12 +197,55 @@ public class Main {
             return 4.5;
         };*/
 
-        Adder adder3 = Employee::add;
+        //Adder adder3 = Employee::add;
 
-        System.out.println("exception digested");
+
+        /*PrintingNumbers printingNumbers = new PrintingNumbers(3);
+        Thread thread1 = new Thread(new MyThread(printingNumbers));
+        Thread thread2 = new Thread(new MyThread(printingNumbers));
+        thread1.start();
+        thread2.start();*/
+        /*Bank bank = new Bank();
+        Thread withdrawal = new WithDrawal(bank, 100);
+        Thread deposit = new Deposit(bank, 10);
+        Thread deposit2 = new Deposit(bank, 50);
+        Thread deposit3= new Deposit(bank, 40);
+
+        withdrawal.start();
+        Thread.sleep(2000);
+        deposit.start();
+        Thread.sleep(2000);
+        deposit2.start();
+        Thread.sleep(2000);
+        deposit3.start();
+
+        deposit.join();
+        deposit2.join();
+        deposit3.join();
+        withdrawal.join();
+
+        System.out.println("hello world");*/
+        //
+        /*PrintingNumbers p = new PrintingNumbers(6);
+        ReentrantLock lock = new ReentrantLock();
+        Thread thread1 = new MyThread(p,lock);
+        Thread thread2 = new MyThread(p,lock);
+        thread1.start();
+        thread2.start();*/
+        ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10);
+        Thread producer = new MyProducer(queue);
+        Thread consumer = new MyConsumer(queue);
+        producer.start();
+        consumer.start();
+
+
+
+
+
 
     }
-    public static void throwCheckedExceptionWrapper() throws CustomException {
+    //  bank -- 1. WIthdrwal Deposit --> wait notify
+    /*public static void throwCheckedExceptionWrapper() throws CustomException {
         try {
             throwCheckedException();
         } catch (CustomException e) {
@@ -214,7 +259,7 @@ public class Main {
         } catch (CustomException e) {
             throw e;
         }
-    }
+    }*/
 
 
 }
