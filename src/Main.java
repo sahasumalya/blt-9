@@ -1,12 +1,10 @@
-import packag1.*;
-import packag2.ChildEmployee;
+import org.jetbrains.annotations.NotNull;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -232,11 +230,55 @@ public class Main {
         Thread thread2 = new MyThread(p,lock);
         thread1.start();
         thread2.start();*/
-        ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10);
+        /*ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10);
         Thread producer = new MyProducer(queue);
         Thread consumer = new MyConsumer(queue);
         producer.start();
-        consumer.start();
+        consumer.start();*/
+
+
+        /*Collection<Callable<String>> callables = new ArrayList<>();
+        for (int i = 1; i <= 100; i++) {
+            Callable callable = new MyCallable("callable-"+i);
+            callables.add(callable);
+        }
+
+        ExecutorService executor = Executors.newFixedThreadPool(4);
+        //executor.execute(new MyRunnable());
+        List<Future<String>> futures = executor.invokeAll(callables);
+        /*for (Future<String> future : futures) {
+            System.out.println(future.get());
+        }*/
+       /* try{
+            executor.shutdown();
+            executor.awaitTermination(10, TimeUnit.SECONDS);
+            executor.shutdownNow();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
+
+        /*MyCalculator<Integer> calculator = new MyCalculator<>();
+        System.out.println(calculator.multiply(3,4));*/
+
+        ArrayList<Integer> a = new ArrayList<Integer>();
+        for (int i = 10; i >=1; i--) {
+            a.add(i);
+        }
+
+         Stream<Integer> stream = a.stream().filter(o -> {
+            //System.out.println(o);
+            return o%2==0;});
+        stream.findFirst().ifPresent(System.out::println);
+//stream.parallel().map(o -> o+1).forEach(System.out::println);
+       // System.out.println(stream.sorted().map(o->o+1).reduce(0,(x,y)->Math.min(x,y)));
+
+
+
+        /*for (int i = 0; i <evenIntegers.size(); i++) {
+            System.out.println(evenIntegers.get(i));
+        }*/
+
 
 
 
